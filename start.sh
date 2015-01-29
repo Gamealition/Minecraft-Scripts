@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Minecraft server start and watchdog script by Roy Curtis
 
