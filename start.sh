@@ -10,10 +10,13 @@
 IDENT=MCSurvival
 
 # Filename of server jarfile
-JAR=spigot.jar
+JAR=spigot-1.8.7.jar
 
-# Arguments for the JVM
-JVM_ARGS="-Xms3G -Xmx3G -XX:MaxPermSize=256M"
+# Arguments for the JVM. Example flags:
+# "-XX:+UseParNewGC -XX:+UseConcMarkSweepGC" - Optimizations for modded servers
+# "-Dlog4j.configurationFile=log4j.xml" - Overrides for modded server logging
+# "-XX:+FlightRecorder -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1046" - Allows Java Flight recorder debugging
+JVM_ARGS="-server -Xms3G -Xmx3G"
 
 # #########
 # CONSTANTS:
@@ -22,10 +25,6 @@ JVM_ARGS="-Xms3G -Xmx3G -XX:MaxPermSize=256M"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ME=`basename $0`
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
-RED="\033[0;31m"
-PURPLE="\033[0;35m"
-BLUE="\033[0;36m"
-CRESET="\033[0m"
 
 cd $DIR
 
@@ -36,9 +35,9 @@ cd $DIR
 if [ "$1" = "--watchdog" ]; then
     # Watchdog loop; to debug, call `start.sh watchdog` 
     while true; do
-        echo -e "*** Starting ${PURPLE}${IDENT}${CRESET} ..."
+        echo -e "*** Starting ${IDENT} ..."
         java $JVM_ARGS -jar $JAR
-        echo -e "*** ${PURPLE}${JAR}${CRESET} exited with code $?. Restarting in 5 seconds (or press CTRL+C NOW to exit)..."
+        echo -e "*** ${JAR} exited with code $?. Restarting in 5 seconds (or press CTRL+C NOW to exit)..."
         sleep 5
     done
 else
@@ -49,6 +48,6 @@ else
         exit 1
     else
         tmux new -d -s $IDENT "$DIR/$ME --watchdog"
-        echo -e "$IDENT starting under watchdog script. Use ${BLUE}tmux attach -t ${IDENT}${CRESET} for console."
+        echo -e "$IDENT starting under watchdog script. Use 'tmux attach -t ${IDENT}'' for console."
     fi
 fi

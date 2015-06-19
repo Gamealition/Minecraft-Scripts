@@ -9,7 +9,5 @@ if [ "$1" != "--cron" ]; then
     exit 1
 fi
 
-# Sleep needed to ensure system services have been given a chance to load
-sleep 5
 /home/minecraft/Survival1.8/start.sh
 /home/minecraft/Direwolf20/start.sh
