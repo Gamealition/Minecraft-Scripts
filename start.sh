@@ -24,7 +24,9 @@ JVM_ARGS="-server -Xms3G -Xmx3G"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ME=`basename $0`
-PATH=/usr/local/bin:/usr/bin:/bin
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+
+cd $DIR
 
 # #########
 # SCRIPT:

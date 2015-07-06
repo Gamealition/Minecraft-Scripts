@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Minecraft server system startup cron script
-PATH=/usr/local/bin:/usr/bin:/bin
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 
 if [ "$1" != "--cron" ]; then
     echo "*** Please do not use this script directly; use individual start.sh scripts instead"
